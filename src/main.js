@@ -4,7 +4,6 @@ import ProgressBar from './components/ProgressBar'
 
 Vue.config.productionTip = false
 
-
 const bar = new Vue(ProgressBar).$mount()
 
 Vue.prototype.$bar = bar

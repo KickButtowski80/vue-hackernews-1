@@ -1,4 +1,4 @@
-import { mount, shallowMount } from '@vue/test-utils'
+import {shallowMount } from '@vue/test-utils'
 import ProgressBar from '../ProgressBar.vue'
 let wrapper = null
 beforeEach(() => {
@@ -7,25 +7,20 @@ beforeEach(() => {
 })
 describe('ProgressBar.vue', () => {
   test('is hidden on initial render', () => {
-
     expect(wrapper.classes()).toContain('hidden') // #A
   })
 
   test('initializes with 0% width', () => {
-
     expect(wrapper.element.style.width).toBe('0%')
   })
 
   test('displays the bar when start is called', () => {
-
-
     expect(wrapper.classes()).toContain('hidden')
 
     wrapper.vm.start()
     // nextTick is used cuz the dom update is happing async
 
     expect(wrapper.classes()).not.toContain('hidden')
-
   })
 
   test('sets the bar to 100% width when finish is called', () => {
@@ -36,7 +31,6 @@ describe('ProgressBar.vue', () => {
   })
 
   test('set the bar to 0% width when start is called', () => {
-
     wrapper.vm.finish()
     wrapper.vm.start()
     expect(wrapper.element.style.width).toBe('0%')
@@ -56,7 +50,7 @@ describe('ProgressBar.vue', () => {
     jest.spyOn(window, 'clearInterval')
     setInterval.mockReturnValue(123)
     wrapper.vm.start()
-    wrapper.vm.finish() 
+    wrapper.vm.finish()
     expect(window.clearInterval).toHaveBeenCalledWith(123)
   })
 })

@@ -12,16 +12,14 @@ export default {
     return {
       isHidden: true,
       percent: 0,
-      timer: 0,
+      timer: 0
     }
   },
   methods: {
     start () {
       this.isHidden = false
       this.percent = 0
-      this.timer = setInterval(()=> { this.percent += 1 }, 100)
-
-
+      this.timer = setInterval(() => { this.percent += 1 }, 100)
     },
     finish () {
       this.percent = 100

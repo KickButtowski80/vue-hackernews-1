@@ -10,6 +10,8 @@
 
 <script>
 import Item from "../components/Item.vue";
+import { fetchListData } from "../api/api";
+
 export default {
   components: {
     Item,
@@ -19,8 +21,20 @@ export default {
       displayItems: window.items,
     };
   },
-  beforeMount() { 
-    this.$bar.start()
+  beforeMount() {
+    this.loadItems();
+  },
+  methods: {
+    async loadItems() {
+      this.$bar.start();
+      try {
+        const items = await fetchListData("top");
+        this.displayItems = items;
+        this.$bar.finish();
+      } catch (error) {
+        this.$bar.fail();
+      }
+    },
   },
 };
 </script>
