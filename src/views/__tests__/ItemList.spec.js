@@ -17,7 +17,7 @@ describe('ItemList.vue', () => {
     const items = [{ id: 1 }, { id: 2 }, { id: 3 }]
     fetchListData.mockResolvedValueOnce(items)
     const wrapper = shallowMount(ItemList, { mocks: { $bar } })
-    await flushPromises()
+    await flushPromises(); // resolve loadItems() in  beforeMount()
     const Items = wrapper.findAll(Item)
     expect(Items).toHaveLength(items.length)
 
@@ -69,5 +69,14 @@ describe('ItemList.vue', () => {
     const data = await fetchListData()
     await flushPromises()
     expect(data).toEqual([])
+  })
+
+  test('awaits promise', async () => {
+    expect.assertions(1)
+    let hasResolved = false
+    await Promise.resolve().then(() =>{      
+      hasResolved = true
+    })
+    expect(hasResolved).toBe(true) 
   })
 })
